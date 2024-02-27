@@ -31,7 +31,7 @@ export default function App() {
         <input
           type='range'
           value={step}
-          onChange={(e) => setStep(Number(e.target.value))}
+          onChange={(e) => setStep(e.target.valueAsNumber)}
         />
         <span className='span'> {step} </span>{' '}
         <button className='button' onClick={() => increase(setStep, 1)}>
@@ -47,7 +47,7 @@ export default function App() {
           type='number'
           name='count'
           value={count}
-          onChange={(e) => setCount(Number(e.target.value))}
+          onChange={(e) => setCount(e.target.valueAsNumber)}
         />
         <button className='button' onClick={() => increase(setCount, step)}>
           &#43;
