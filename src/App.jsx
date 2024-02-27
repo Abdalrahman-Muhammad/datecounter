@@ -1,35 +1,75 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import './index.css';
+export default function App() {
+  const [step, setStep] = useState(1);
+  const [count, setCount] = useState(0);
+  const increase = (setState, step) => {
+    setState((pre) => pre + step);
+  };
+  const decrease = (setState, step) => {
+    setState((pre) => pre - step);
+  };
 
-function App() {
-  const [count, setCount] = useState(0)
-
+  let date = new Date();
+  date.setDate(date.getDate() + count);
+  const formattedDate = date.toLocaleDateString('en-US', {
+    weekday: 'short',
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  });
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+      <div className='container'>
+        <button
+          className='button'
+          onClick={() => decrease(setStep, 1)}
+          disabled={step === 0}
+        >
+          &#8722;
         </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+        <input
+          type='range'
+          value={step}
+          onChange={(e) => setStep(Number(e.target.value))}
+        />
+        <span className='span'> {step} </span>{' '}
+        <button className='button' onClick={() => increase(setStep, 1)}>
+          &#43;
+        </button>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+      <div className='container'>
+        <button className='button' onClick={() => decrease(setCount, step)}>
+          &#8722;
+        </button>
 
-export default App
+        <input
+          type='number'
+          name='count'
+          value={count}
+          onChange={(e) => setCount(Number(e.target.value))}
+        />
+        <button className='button' onClick={() => increase(setCount, step)}>
+          &#43;
+        </button>
+      </div>
+      <p className='paragraph'>
+        {count === 0
+          ? 'Today is'
+          : count > 0
+          ? `${count} days from today is`
+          : `${Math.abs(count)} days ago was`}{' '}
+        {formattedDate}
+      </p>
+      <button
+        className='button'
+        onClick={() => {
+          setCount(() => 0);
+          setStep(() => 1);
+        }}
+      >
+        Reset
+      </button>
+    </>
+  );
+}
