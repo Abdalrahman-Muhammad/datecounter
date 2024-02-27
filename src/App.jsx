@@ -22,7 +22,7 @@ export default function App() {
     <>
       <div className='container'>
         <button
-          className='button'
+          className='button-30'
           onClick={() => decrease(setStep, 1)}
           disabled={step === 0}
         >
@@ -34,12 +34,12 @@ export default function App() {
           onChange={(e) => setStep(e.target.valueAsNumber)}
         />
         <span className='span'> {step} </span>{' '}
-        <button className='button' onClick={() => increase(setStep, 1)}>
+        <button className='button-30' onClick={() => increase(setStep, 1)}>
           &#43;
         </button>
       </div>
       <div className='container'>
-        <button className='button' onClick={() => decrease(setCount, step)}>
+        <button className='button-30' onClick={() => decrease(setCount, step)}>
           &#8722;
         </button>
 
@@ -49,7 +49,7 @@ export default function App() {
           value={count}
           onChange={(e) => setCount(e.target.valueAsNumber)}
         />
-        <button className='button' onClick={() => increase(setCount, step)}>
+        <button className='button-30' onClick={() => increase(setCount, step)}>
           &#43;
         </button>
       </div>
@@ -63,7 +63,7 @@ export default function App() {
       </p>
       {(count !== 0 || step !== 1) && (
         <button
-          className='button'
+          className='button-30'
           onClick={() => {
             setCount(() => 0);
             setStep(() => 1);
