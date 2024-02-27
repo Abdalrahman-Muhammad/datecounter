@@ -61,15 +61,17 @@ export default function App() {
           : `${Math.abs(count)} days ago was`}{' '}
         {formattedDate}
       </p>
-      <button
-        className='button'
-        onClick={() => {
-          setCount(() => 0);
-          setStep(() => 1);
-        }}
-      >
-        Reset
-      </button>
+      {(count !== 0 || step !== 1) && (
+        <button
+          className='button'
+          onClick={() => {
+            setCount(() => 0);
+            setStep(() => 1);
+          }}
+        >
+          Reset
+        </button>
+      )}
     </>
   );
 }
